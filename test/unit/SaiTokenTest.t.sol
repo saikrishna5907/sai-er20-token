@@ -72,4 +72,16 @@ contract SaiTokenTest is Test {
         assert(saiToken.balanceOf(address1) == STARTING_BALANCE - transferAmount);
         assertEq(receiverInitialBalance + transferAmount, saiToken.balanceOf(address2));
     }
+
+    function testAddressZeroError() public {
+        //    address1 transfers 100 tokens to address(0)
+        uint256 transferAmount = 100;
+        vm.expectRevert();
+        saiToken.transfer(address(0), transferAmount);
+    }
+
+    function testMintFunction() public {
+        uint256 mintAmount = 100;
+        //    address1 mints 100 tokens
+    }
 }
